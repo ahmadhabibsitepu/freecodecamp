@@ -59,7 +59,10 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex h-screen items-center justify-center">
+    <main className="flex h-screen flex-col items-center justify-center">
+      <h1 className="text-5xl font-extrabold tracking-tight md:text-4xl">
+        Drum Machine
+      </h1>
       <div
         id="drum-machine"
         className="flex flex-col items-center justify-center gap-4"

@@ -96,6 +96,9 @@ export default function Home() {
   };
   return (
     <main className="flex h-screen flex-col items-center justify-center gap-0.5">
+      <h1 className="mb-4 text-5xl font-extrabold tracking-tight md:text-4xl">
+        JavaScript Calculator
+      </h1>
       <div
         id="display"
         className="flex h-20 w-1/4 items-end justify-end rounded-md border p-2"

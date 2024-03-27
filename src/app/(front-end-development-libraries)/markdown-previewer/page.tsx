@@ -77,8 +77,11 @@ export default function Home() {
 
   return (
     <>
-      <main className="flex h-screen justify-center p-8">
-        <div className="flex h-full w-full max-w-prose flex-col gap-8">
+      <main className="flex h-screen flex-col items-center gap-8 p-8">
+        <h1 className="h-fit text-5xl font-extrabold tracking-tight md:text-4xl">
+          Markdown Previewer
+        </h1>
+        <div className="flex h-auto w-full max-w-prose flex-col gap-8">
           <Textarea
             id="editor"
             className="h-1/2"
@@ -86,7 +89,7 @@ export default function Home() {
             value={markdown.raw}
           ></Textarea>
           <Card
-            className="prose prose-zinc h-1/2 w-full overflow-y-scroll p-2"
+            className="prose prose-zinc mb-8 h-1/2 w-full overflow-y-scroll p-2"
             id="preview"
             dangerouslySetInnerHTML={{ __html: markdown.html }}
           />

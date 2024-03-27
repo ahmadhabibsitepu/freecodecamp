@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
 export default function Home() {
   const [breakTime, setBreakTime] = useState(5);
@@ -121,8 +122,11 @@ export default function Home() {
 
   return (
     <main className="flex h-screen flex-col items-center justify-center gap-8">
+      <h1 className="text-5xl font-extrabold tracking-tight md:text-4xl">
+        25 + 5 Clock
+      </h1>
       <div className="flex gap-8">
-        <div className="flex flex-col items-center gap-2">
+        <Card className="flex flex-col items-center gap-4 p-6">
           <p id="break-label">Break Length</p>
           <div className="flex items-center gap-4">
             <Button id="break-increment" onClick={handleClick}>
@@ -133,8 +137,8 @@ export default function Home() {
               -
             </Button>
           </div>
-        </div>
-        <div className="flex flex-col items-center gap-2">
+        </Card>
+        <Card className="flex flex-col items-center gap-4 p-6">
           <p id="session-label">Session Length</p>
           <div className="flex items-center gap-4">
             <Button id="session-increment" onClick={handleClick}>
@@ -145,9 +149,9 @@ export default function Home() {
               -
             </Button>
           </div>
-        </div>
+        </Card>
       </div>
-      <div className="flex flex-col items-center gap-4">
+      <Card className="flex flex-col items-center gap-4 p-6">
         <p id="timer-label">{currentActive.session}</p>
         <p id="time-left">
           {currentActive.minutes.toString().padStart(2, "0")}:
@@ -166,7 +170,7 @@ export default function Home() {
           ref={audioRef}
           src="https://cdn.freecodecamp.org/testable-projects-fcc/audio/BeepSound.wav"
         />
-      </div>
+      </Card>
     </main>
   );
 }
