@@ -27,12 +27,13 @@ const Page = () => {
     event.preventDefault();
     setResult(null);
     try {
-      const response = await fetch(`/api/shorturl`, {
+      const formData = new FormData();
+
+      formData.append("url", input);
+
+      const response = await fetch(`/url-shortener-microservice/api/shorturl`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ url: input }),
+        body: formData,
       });
 
       const data = await response.json();
@@ -49,7 +50,10 @@ const Page = () => {
     if (!shorturl) {
       return setResult("Please enter a short URL");
     }
-    router.push(`/api/shorturl/${shorturl}`);
+    // const response = await fetch(
+    //   `/url-shortener-microservice/api/shorturl/${shorturl}`,
+    // );
+    router.push(`/url-shortener-microservice/api/shorturl/${shorturl}`);
   };
 
   return (

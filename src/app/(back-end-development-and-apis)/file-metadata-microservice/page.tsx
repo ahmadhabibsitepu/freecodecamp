@@ -25,10 +25,13 @@ const Page = () => {
       const formData = new FormData();
       formData.append("upfile", file);
 
-      const response = await fetch(`/api`, {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        `/file-metadata-microservice/api/fileanalyse`,
+        {
+          method: "POST",
+          body: formData,
+        },
+      );
 
       const data = await response.json();
 
@@ -45,7 +48,7 @@ const Page = () => {
       </h1>
       <form onSubmit={handleSubmit} className="flex w-full flex-col gap-4">
         <Label>Enter URL</Label>
-        <Input type="file" onChange={handleChange} />
+        <Input type="file" name="upfile" onChange={handleChange} />
         <Button type="submit">Submit</Button>
       </form>
 

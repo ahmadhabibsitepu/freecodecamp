@@ -9,14 +9,21 @@ export const POST = async (
   try {
     const { id } = params;
 
-    const { description, duration, date } = await request.json();
+    const req = await request.formData();
+    const description = req.get("description");
+    const duration = req.get("duration");
+    const date = req.get("date");
 
-    if (!description || !duration || !Number(duration)) {
+    if (typeof description !== "string" || typeof duration !== "string") {
       return NextResponse.json({ error: "Invalid Input" }, { status: 400 });
     }
 
     const newDate =
-      new Date(date).toString() === "Invalid Date" ? undefined : new Date(date);
+      typeof date === "string"
+        ? new Date(date).toString() === "Invalid Date"
+          ? undefined
+          : new Date(date)
+        : undefined;
 
     const user = await getUserById(id);
 
@@ -39,7 +46,7 @@ export const POST = async (
     }
 
     const data = {
-      _id: exercise.id,
+      _id: id,
       username: user.username,
       description: exercise.description,
       duration: exercise.duration,
@@ -48,7 +55,6 @@ export const POST = async (
 
     return NextResponse.json(data, { status: 200 });
   } catch (error) {
-    console.log("error :", error);
     return NextResponse.json(
       { error: "Something Went Wrong" },
       { status: 500 },

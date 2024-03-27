@@ -16,7 +16,7 @@ const Page = () => {
     event.preventDefault();
     setResult(null);
     try {
-      const response = await fetch(`/api/${input}`);
+      const response = await fetch(`/timestamp-microservice/api/${input}`);
 
       const data = await response.json();
 

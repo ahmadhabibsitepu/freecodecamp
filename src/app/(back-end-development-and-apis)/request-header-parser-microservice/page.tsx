@@ -10,7 +10,9 @@ const Page = () => {
     event.preventDefault();
     setResult(null);
     try {
-      const response = await fetch(`/api/whoami`);
+      const response = await fetch(
+        `/request-header-parser-microservice/api/whoami`,
+      );
 
       const data = await response.json();
 

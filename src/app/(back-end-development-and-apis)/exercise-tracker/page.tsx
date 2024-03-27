@@ -38,12 +38,12 @@ const Page = () => {
     event.preventDefault();
     setResult(null);
     try {
-      const response = await fetch(`/api/users`, {
+      const formData = new FormData();
+      formData.append("username", username);
+
+      const response = await fetch(`/exercise-tracker/api/users`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username: username }),
+        body: formData,
       });
 
       const data = await response.json();
@@ -67,17 +67,18 @@ const Page = () => {
     }
 
     try {
-      const response = await fetch(`/api/users/${execise.id}/exercises`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const formData = new FormData();
+      formData.append("description", execise.description);
+      formData.append("duration", execise.duration);
+      formData.append("date", execise.date);
+
+      const response = await fetch(
+        `/exercise-tracker/api/users/${execise.id}/exercises`,
+        {
+          method: "POST",
+          body: formData,
         },
-        body: JSON.stringify({
-          description: execise.description,
-          duration: execise.duration,
-          date: execise.date,
-        }),
-      });
+      );
 
       const data = await response.json();
 
